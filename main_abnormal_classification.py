@@ -92,7 +92,7 @@ if __name__ == '__main__':
                 break
             
             if frame_idx % frame_interval == 0: 
-                print(frame_idx)
+                print(f"Classification at {frame_idx}")
                 frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
 
                 feature = model.compute_clip_emb(frame) # including preprocess image and calculate clip feature

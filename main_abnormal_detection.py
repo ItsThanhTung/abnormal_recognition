@@ -22,7 +22,7 @@ from collections import deque
 def parse_args(input_args=None):
     parser = argparse.ArgumentParser(description='VadCLIP')
     parser.add_argument('--seed', default=234, type=int)
-    parser.add_argument('--model-path', default='pretrained/best_noclip.pt')
+    parser.add_argument('--model_path', default='pretrained/best_noclip.pt')
     parser.add_argument('--out_dir', default='exp_output')
     parser.add_argument('--target_fps', default=2, type=int)
     parser.add_argument('--camera', default="videos/video_2fps.mp4", help='Source of camera or video file path.')
@@ -92,6 +92,7 @@ if __name__ == '__main__':
                 break
             
             if frame_idx % frame_interval == 0: 
+                print(f"Detection at {frame_idx}")
                 frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
 
                 feature = model.compute_clip_emb(frame) # including preprocess image and calculate clip feature
@@ -99,6 +100,7 @@ if __name__ == '__main__':
 
                 if len(local_feat_queue) < model.attn_window:
                     # wait until the window full
+                    frame_idx += 1
                     continue
 
                 visual_features = torch.stack(list(local_feat_queue), dim=1)
