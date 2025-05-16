@@ -7,9 +7,6 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 import numpy as np
-from sklearn.metrics import average_precision_score, roc_auc_score, precision_recall_curve
-import matplotlib.pyplot as plt
-
 
 from PIL import Image
 import imageio
@@ -20,7 +17,7 @@ from collections import deque
 
 
 def parse_args(input_args=None):
-    parser = argparse.ArgumentParser(description='VadCLIP')
+    parser = argparse.ArgumentParser(description='VadCLIP Abnormal Classification')
     parser.add_argument('--seed', default=234, type=int)
     parser.add_argument('--model_path', default='pretrained/best.pt')
     parser.add_argument('--out_dir', default='exp_output')
