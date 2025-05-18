@@ -66,7 +66,7 @@ if __name__ == '__main__':
                         preprocess=preproc).start()
 
     if use_subsample:
-        frame_interval = int(round(original_fps / target_fps))
+        frame_interval = int(round(original_fps / args.target_fps))
     else:
         frame_interval = 1
     ##############################
